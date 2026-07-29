@@ -1,4 +1,12 @@
 <p align="center">
+  ---
+
+# ⚡ AltaXploit C2 Framework ⚡
+
+## *Advanced Red Team Command & Control Infrastructure*
+
+---
+
   <img src="image1.png" alt="AltaXploit Banner" width="800"/>
 </p>
 
@@ -10,13 +18,6 @@
   <a href="#"><img src="https://img.shields.io/badge/Python-3.8%2B-yellow?style=for-the-badge&logo=python"></a>
 </p>
 
----
-
-# ⚡ AltaXploit C2 Framework ⚡
-
-## *Advanced Red Team Command & Control Infrastructure*
-
----
 
 ## 🧭 Table of Contents
 - [🌟 Overview](#-overview)
@@ -53,7 +54,7 @@
 | 🎥 **Live Surveillance Suite** | Real‑time webcam, screen, and microphone streaming using **ffmpeg** and a local **Node Media Server** (port 1935). |
 | 🧠 **Persistent Client Tracking** | Unique HWID‑based identification; automatically re‑attaches to reconnecting clients. |
 | 🛠️ **One‑Click Payload Generator** | Produces stealthy Windows EXE (via .NET) with no console flash – ready for deployment. |
-| 📂 **File Transfer** | Upload/download files to/from compromised hosts with progress feedback. |
+| 📂 **File Transfer** | Upload/download files to/from compromised hosts with progress feedback. Supports **files up to 1 GB**. |
 | 💻 **Interactive PowerShell Shells** | Full interactive sessions with command history and color‑coded output. |
 | 🔄 **Auto‑Reconnect & Heartbeat** | The backdoor automatically reconnects if the server goes down, with exponential backoff and jitter. |
 | 👑 **NT AUTHORITY\SYSTEM Persistence** | Deploy a scheduled task that runs as SYSTEM, survives reboots, and auto‑restarts 999 times. |
@@ -80,14 +81,20 @@
 | Command | Description |
 |---------|-------------|
 | `back` | Return to main prompt |
-| `upload <src> <dst>` | Upload a local file to the client |
-| `download <file>` | Download a file from the client |
+| `upload <local_file> <remote_file>` | Upload a **local** file to the client. Both paths must be **absolute** with filenames (e.g., `/home/kali/tool.exe` → `C:\Users\admin\Desktop\tool.exe`). |
+| `download <remote_file>` | Download a file from the client. Use the **full remote path** with filename (e.g., `C:\Windows\Temp\data.txt`). The file will be saved in the `Client-Data/` folder on the C2 server. |
 | `install spyware` | Install FFmpeg on the target (required for spy modules) |
 | `spy camera` | Start live webcam stream |
 | `spy screen` | Start live screen capture |
 | `spy mic` | Start live microphone stream |
 | `spy stop` | Stop all active streams |
 | `<any PowerShell command>` | Execute arbitrary commands on the target |
+
+> 📁 **File Transfer Notes:**  
+> - Always provide **full absolute paths** with the **filename and extension**.  
+> - Maximum file size: **1 GB** (tested; larger transfers may timeout).  
+> - Upload progress is shown on the server console.  
+> - Downloaded files are stored in `Client-Data/` with the original filename.
 
 > 🖼️ *For a visual guide, see the command menu screenshot below.*  
 > ![Command Menu Screenshot](image2.png)
@@ -149,7 +156,7 @@ The `backdoor.ps1` included in the repository is a **fully persistent PowerShell
 
 1. **Edit the backdoor.ps1** – set your C2 server IP (port is **hardcoded to 443** – do **not** change it):
    ```powershell
-   $s= "YOUR_IP"   # Change this to your C2 server's IP
+   $server = "YOUR_IP"   # Change this to your C2 server's IP
    ```
 
 2. **Convert the script to Base64** (this is required for the persistence task).  
