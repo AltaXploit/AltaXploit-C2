@@ -1,9 +1,9 @@
 <p align="center">
  
 
-        # ⚡ AltaXploit C2 Framework ⚡
+   # ⚡ AltaXploit C2 Framework ⚡
 
-## *Advanced Red Team Command & Control Infrastructure*
+# *Advanced Red Team Command & Control Infrastructure*
 
 
 
