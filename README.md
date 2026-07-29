@@ -1,11 +1,11 @@
 <p align="center">
-  ---
+ 
 
 # ⚡ AltaXploit C2 Framework ⚡
 
 ## *Advanced Red Team Command & Control Infrastructure*
 
----
+
 
   <img src="image1.png" alt="AltaXploit Banner" width="800"/>
 </p>
