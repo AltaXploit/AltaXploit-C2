@@ -1,4 +1,4 @@
-![Alta-Tracker Screenshot](/image 1.png)
+![Alta-Tracker Screenshot](image 1.png)
 
 # AltaXploit C2 Framework
 
