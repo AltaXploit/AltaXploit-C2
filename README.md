@@ -1,6 +1,8 @@
-![Alta-Tracker Screenshot](/image1.png)
+
 
 # AltaXploit C2 Framework
+
+![Alta-Tracker Screenshot](/image1.png)
 
 **Developer:** Muhammad Alwaz
 
