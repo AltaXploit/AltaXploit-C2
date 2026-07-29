@@ -149,7 +149,7 @@ The `backdoor.ps1` included in the repository is a **fully persistent PowerShell
 
 1. **Edit the backdoor.ps1** – set your C2 server IP (port is **hardcoded to 443** – do **not** change it):
    ```powershell
-   $server = "YOUR_IP"   # Change this to your C2 server's IP
+   $s= "YOUR_IP"   # Change this to your C2 server's IP
    ```
 
 2. **Convert the script to Base64** (this is required for the persistence task).  
