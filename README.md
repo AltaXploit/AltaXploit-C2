@@ -1,68 +1,94 @@
+```markdown
+<div align="center">
 
+# ⚡ AltaXploit C2 Framework ⚡
+### *Advanced Red Team Command & Control Infrastructure*
 
-# AltaXploit C2 Framework
+![Alta-Tracker Screenshot](image1.png)
 
-![Alta-Tracker Screenshot](/image1.png)
+[![Developer](https://img.shields.io/badge/Developer-Muhammad%20Alwaz-red.svg)](https://github.com/AltaXploit)
+[![Website](https://img.shields.io/badge/Website-alwaz.co.uk-blue.svg)](https://www.alwaz.co.uk)
+[![License](https://img.shields.io/badge/License-Authorized%20Use%20Only-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
 
-**Developer:** Muhammad Alwaz
+</div>
 
-**Website:** [alwaz.co.uk](https://www.alwaz.co.uk)
+---
+
+## 🧭 Table of Contents
+* [🌟 Overview](#-overview)
+* [🔥 Key Features](#-key-features)
+* [💻 Command Reference Preview](#-command-reference-preview)
+* [🚀 Installation & Setup Guide](#-installation--setup-guide)
+* [🔌 Port Architecture & Network Layout](#-port-architecture--network-layout)
+* [⚠️ Legal Disclaimer & Disclaimer of Liability](#️-legal-disclaimer--disclaimer-of-liability)
 
 ---
 
 ## 🌟 Overview
 
-**AltaXploit C2** is an advanced Red Team Command and Control framework designed for stealth operations, robust client management, and extensive post-exploitation capabilities. Built primarily around advanced PowerShell reverse shells, it operates heavily in-memory, ensuring complete fileless execution on the victim's machine to easily bypass modern Anti-Virus (AV) and Endpoint Detection and Response (EDR) solutions.
+**AltaXploit C2** is a sophisticated, high-performance Red Team Command and Control framework engineered for tactical operations, robust multi-client management, and covert post-exploitation workflows. Built around advanced asynchronous PowerShell reverse shell handlers, the framework operates entirely in-memory—ensuring a clean fileless execution path on targeted assets designed to seamlessly evade modern Anti-Virus (AV) and Endpoint Detection & Response (EDR) telemetry.
 
 ---
 
-## ✨ Key Features
+## 🔥 Key Features
 
-* **Fileless In-Memory Execution:** Payloads are executed directly in memory without writing payloads to disk, minimizing forensic footprint and avoiding traditional file-based detection mechanisms.
-
-
-* **Encrypted TLS Communication:** Designed strictly around secure **port 443** using SSL with fake certificates to blend seamlessly with normal HTTPS web traffic.
-
-
-* **Advanced Spyware & Surveillance Suite:** Integrates natively with `ffmpeg` and a local Node Media Server running on **port 1935** to capture real-time webcam streams, desktop screen monitoring, and microphone audio recordings.
-
-
-* **Resilient Client Persistence & Management:** Tracks and manages multiple active targets with automated HWID identification and unique session handling.
-
-
-* **Built-in Payload Generator:** Generates stealthy Windows EXE binaries compiled via .NET that utilize native Windows APIs without console flashing.
-
-
+* 🧬 **Stealthy In-Memory Execution:** Payloads execute directly within RAM without writing artifacts to disk, shrinking the forensic footprint and bypassing static file analysis.
+* 🔒 **Encrypted TLS Communications:** Built exclusively around secure **port 443** utilizing TLS with custom certificates to blend right into standard corporate HTTPS traffic.
+* 🎥 **Advanced Surveillance & Spyware Suite:** Integrates natively with `ffmpeg` and a local Node Media Server on **port 1935** to stream real-time webcam feeds, remote desktop displays, and live microphone audio.
+* 🧠 **Resilient Client Persistence & Tracking:** Intelligent session tracking via unique Hardware IDs (HWID) to manage reconnecting assets and dropped connections smoothly.
+* 🛠️ **Built-in Automated Payload Generator:** Generates stealthy Windows executable payloads compiled via .NET, leveraging native Windows APIs (`CreateProcess`) to eliminate console visibility.
 
 ---
 
-## 🚀 Installation & Setup Instructions
+## 💻 Command Reference Preview
 
-Follow these step-by-step instructions to clone, set up, and launch the AltaXploit C2 framework on your server:
+The framework features an intuitive, color-coded interactive command interface designed for speed and clarity during operations:
+
+![AltaXploit Help Menu](image2.png)
+
+---
+
+## 🚀 Installation & Setup Guide
+
+Deploying the **AltaXploit C2** environment on your server requires just a few streamlined steps:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/AltaXploit/AltaXploit-C2.git
+git clone [https://github.com/AltaXploit/AltaXploit-C2.git](https://github.com/AltaXploit/AltaXploit-C2.git)
 
 # 2. Navigate into the framework directory
 cd AltaXploit-C2
 
-# 3. Give execution permissions to the setup script
+# 3. Assign execution permissions to the setup script
 chmod +x setup.py
 
-# 4. Run the setup script with administrative privileges
+# 4. Execute the setup script with administrative rights
 sudo python3 setup.py
 
-# 5. Launch the C2 framework
+# 5. Launch the C2 command center
 python3 C2.py
 
 ```
 
 ---
 
-## 🔌 Port Configuration & Architecture Note
+## 🔌 Port Architecture & Network Layout
 
-* **Port 443 (Default & Mandatory):** The C2 server is hardcoded/designed to operate exclusively on **port 443** utilizing SSL with fake certificates. Do not change this port, as it mimics standard secure web traffic to evade basic network filters.
+Proper network configuration is critical for maintaining stable communication channels:
 
+* **Port 443 (Mandatory C2 Control Channel):** Hardcoded for server communications using TLS encryption with fake certs. This ensures all command traffic mimics normal secure web traffic to pass safely through strict perimeter controls.
+* **Port 1935 (Node Media Server Stream):** Operates locally in the background to handle high-performance Real-Time Messaging Protocol (`rtmp`) streaming feeds required for live camera, screen, and audio intelligence.
 
-* **Port 1935 (Node Media Server):** Automatically runs locally to manage real-time streaming data (`rtmp`) needed for the framework's integrated camera, microphone, and screen spy features.
+---
+
+## ⚠️ Legal Disclaimer & Disclaimer of Liability
+
+> **IMPORTANT:** *The software and source code provided in this repository are intended solely for authorized security research, educational purposes, penetration testing, and red teaming engagements with explicit prior written consent from system owners.*
+
+* **Author Responsibility:** The creator (**Muhammad Alwaz**) assumes **no liability** whatsoever for any misuse, damage, or illegal activities conducted using this framework.
+* **User Accountability:** By cloning, downloading, or utilizing this tool, you agree that you are solely responsible for compliance with all applicable local, national, and international laws. Unauthorized access or attacks against computer networks are strictly prohibited.
+
+```
+
+```
