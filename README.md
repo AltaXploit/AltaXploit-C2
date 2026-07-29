@@ -1,4 +1,3 @@
-```markdown
 <p align="center">
   <img src="image1.png" alt="AltaXploit Banner" width="800"/>
 </p>
@@ -319,4 +318,3 @@ Removes the **Security Descriptor (SD)** registry value, which is used by the Ta
 <p align="center">
   <b>Made with ❤️ for the Red Team Community</b>
 </p>
-```
