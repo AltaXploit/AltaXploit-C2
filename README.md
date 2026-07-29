@@ -1,3 +1,4 @@
+```markdown
 <p align="center">
   <img src="image1.png" alt="AltaXploit Banner" width="800"/>
 </p>
@@ -21,7 +22,7 @@
 ## 🧭 Table of Contents
 - [🌟 Overview](#-overview)
 - [🔥 Key Features](#-key-features)
-- [💻 Command Reference & Screenshot](#-command-reference--screenshot)
+- [💻 Command Reference](#-command-reference)
 - [🚀 Installation & Setup Guide](#-installation--setup-guide)
 - [🔐 Advanced Persistence & Payload Deployment](#-advanced-persistence--payload-deployment)
 - [🎥 Surveillance Modules – Live Demo](#-surveillance-modules--live-demo)
@@ -61,18 +62,25 @@
 
 ---
 
-## 💻 Command Reference & Screenshot
+## 💻 Command Reference
 
-![Command Menu Screenshot](image2.png)
-
-### Interactive Shell Commands (within `attack <id>`)
+### Main Prompt Commands (at `AltaXploit>`)
 
 | Command | Description |
 |---------|-------------|
 | `list` | Show all connected clients |
 | `attack <id>` | Enter interactive shell with a client |
-| `back` | Return to main prompt |
 | `kill <id>` | Permanently terminate a client session |
+| `generate payload` | Build a new Windows EXE payload |
+| `help` | Display this command reference |
+| `clear` | Clear the terminal |
+| `exit` | Shut down the C2 server |
+
+### Interactive Shell Commands (within `AltaXploit[<id>]>`)
+
+| Command | Description |
+|---------|-------------|
+| `back` | Return to main prompt |
 | `upload <src> <dst>` | Upload a local file to the client |
 | `download <file>` | Download a file from the client |
 | `install spyware` | Install FFmpeg on the target (required for spy modules) |
@@ -80,10 +88,10 @@
 | `spy screen` | Start live screen capture |
 | `spy mic` | Start live microphone stream |
 | `spy stop` | Stop all active streams |
-| `generate payload` | Build a new Windows EXE payload |
-| `help` | Display this command reference |
-| `clear` | Clear the terminal |
-| `exit` | Shut down the C2 server |
+| `<any PowerShell command>` | Execute arbitrary commands on the target |
+
+> 🖼️ *For a visual guide, see the command menu screenshot below.*  
+> ![Command Menu Screenshot](image2.png)
 
 ---
 
@@ -235,7 +243,10 @@ AltaXploit includes a full‑blown surveillance suite that captures and streams 
 | **Screen** | Captures live desktop screen. | ![Screen](screen.png) |
 | **Microphone** | Records live audio from the mic. | ![Mic](mic.png) |
 
-> 🔴 All streams are sent via RTMP to your local Node Media Server (port 1935) and can be viewed using the built‑in GUI viewers (`cam.py`, `screen.py`, `microphone.py`). Alternatively, you can use any RTMP‑compatible player like VLC at `rtmp://<LHOST>/live/stream`, `rtmp://<LHOST>/live/screen`, or `rtmp://<LHOST>/live/mic`.
+> 🔴 All streams are sent via RTMP to your local Node Media Server (port 1935) and can be viewed using the built‑in GUI viewers (`cam.py`, `screen.py`, `microphone.py`). Alternatively, you can use any RTMP‑compatible player like VLC at:
+> - `rtmp://<LHOST>/live/stream` (camera)
+> - `rtmp://<LHOST>/live/screen` (screen)
+> - `rtmp://<LHOST>/live/mic` (microphone)
 
 <p align="center">
   <img src="https://media.giphy.com/media/26Ff1JjEirjWYB4Jm/giphy.gif" width="600">
@@ -266,7 +277,7 @@ The C2 server will ask for the LHOST IP at startup. You can also set it manually
 Replace the self‑signed `cert.pem` and `key.pem` in `certs/` with your own signed certificates for added stealth.
 
 ### Disabling GUI Viewers
-If you're running headless (no `DISPLAY`), you can comment out the GUI launch lines in `C2.py` (inside the `spy` command handlers) and use an external RTMP player like VLC to view streams at `rtmp://<LHOST>/live/stream`.
+If you're running headless (no `DISPLAY`), you can comment out the GUI launch lines in `C2.py` (inside the `spy` command handlers) and use an external RTMP player like VLC to view streams.
 
 ---
 
@@ -308,3 +319,4 @@ Removes the **Security Descriptor (SD)** registry value, which is used by the Ta
 <p align="center">
   <b>Made with ❤️ for the Red Team Community</b>
 </p>
+```
