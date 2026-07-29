@@ -1,11 +1,10 @@
+```markdown
 ![Alta-Tracker Screenshot](image 1.png)
 
 # AltaXploit C2 Framework
 
-**Developer:** Muhammad Alwaz
-
-**GitHub:** [AltaXploit/AltaXploit-C2](https://www.google.com/search?q=https://github.com/AltaXploit/AltaXploit-C2)
-
+**Developer:** Muhammad Alwaz  
+**GitHub:** [AltaXploit/AltaXploit-C2](https://github.com/AltaXploit/AltaXploit-C2)  
 **Website:** [alwaz.co.uk](https://www.alwaz.co.uk)
 
 ---
@@ -19,20 +18,10 @@
 ## ✨ Key Features
 
 * **Fileless In-Memory Execution:** Payloads are executed directly in memory without writing payloads to disk, minimizing forensic footprint and avoiding traditional file-based detection mechanisms.
-
-
 * **Encrypted TLS Communication:** Designed strictly around secure **port 443** using SSL with fake certificates to blend seamlessly with normal HTTPS web traffic.
-
-
 * **Advanced Spyware & Surveillance Suite:** Integrates natively with `ffmpeg` and a local Node Media Server running on **port 1935** to capture real-time webcam streams, desktop screen monitoring, and microphone audio recordings.
-
-
 * **Resilient Client Persistence & Management:** Tracks and manages multiple active targets with automated HWID identification and unique session handling.
-
-
 * **Built-in Payload Generator:** Generates stealthy Windows EXE binaries compiled via .NET that utilize native Windows APIs without console flashing.
-
-
 
 ---
 
@@ -42,19 +31,19 @@ Follow these step-by-step instructions to clone, set up, and launch the AltaXplo
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/AltaXploit/AltaXploit-C2.git[cite: 1]
+git clone [https://github.com/AltaXploit/AltaXploit-C2.git](https://github.com/AltaXploit/AltaXploit-C2.git)
 
 # 2. Navigate into the framework directory
-cd AltaXploit-C2[cite: 1]
+cd AltaXploit-C2
 
 # 3. Give execution permissions to the setup script
-chmod +x setup.py[cite: 1]
+chmod +x setup.py
 
 # 4. Run the setup script with administrative privileges
-sudo python3 setup.py[cite: 1]
+sudo python3 setup.py
 
 # 5. Launch the C2 framework
-python3 C2.py[cite: 1]
+python3 C2.py
 
 ```
 
@@ -63,6 +52,8 @@ python3 C2.py[cite: 1]
 ## 🔌 Port Configuration & Architecture Note
 
 * **Port 443 (Default & Mandatory):** The C2 server is hardcoded/designed to operate exclusively on **port 443** utilizing SSL with fake certificates. Do not change this port, as it mimics standard secure web traffic to evade basic network filters.
-
-
 * **Port 1935 (Node Media Server):** Automatically runs locally to manage real-time streaming data (`rtmp`) needed for the framework's integrated camera, microphone, and screen spy features.
+
+```
+
+```
