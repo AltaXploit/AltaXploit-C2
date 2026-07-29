@@ -2,10 +2,10 @@
 
 ## *Advanced Red Team Command & Control Infrastructure*
 
-[cite: 1]
+![Alta-Tracker Screenshot](image1.png)
 
-[](https://www.google.com/search?q=%5Bhttps%3A%2F%2Fgithub.com%2FAltaXploit%5D%28https%3A%2F%2Fgithub.com%2FAltaXploit%29)[cite: 1]
-[](https://www.alwaz.co.uk)[cite: 1]
+[](https://www.google.com/search?q=%5Bhttps%3A%2F%2Fgithub.com%2FAltaXploit%5D%28https%3A%2F%2Fgithub.com%2FAltaXploit%29)
+[](https://www.alwaz.co.uk)
 [](https://www.google.com/search?q=)
 [](https://www.google.com/search?q=LICENSE)
 
