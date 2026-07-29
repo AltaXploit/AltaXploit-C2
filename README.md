@@ -4,8 +4,6 @@
 
 **Developer:** Muhammad Alwaz
 
-**GitHub:** [AltaXploit/AltaXploit-C2](https://www.google.com/search?q=https://github.com/AltaXploit/AltaXploit-C2)
-
 **Website:** [alwaz.co.uk](https://www.alwaz.co.uk)
 
 ---
