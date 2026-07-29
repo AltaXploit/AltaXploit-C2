@@ -42,19 +42,19 @@ Follow these step-by-step instructions to clone, set up, and launch the AltaXplo
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/AltaXploit/AltaXploit-C2.git[cite: 1]
+git clone https://github.com/AltaXploit/AltaXploit-C2.git
 
 # 2. Navigate into the framework directory
-cd AltaXploit-C2[cite: 1]
+cd AltaXploit-C2
 
 # 3. Give execution permissions to the setup script
-chmod +x setup.py[cite: 1]
+chmod +x setup.py
 
 # 4. Run the setup script with administrative privileges
-sudo python3 setup.py[cite: 1]
+sudo python3 setup.py
 
 # 5. Launch the C2 framework
-python3 C2.py[cite: 1]
+python3 C2.py
 
 ```
 
