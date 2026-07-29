@@ -1,17 +1,20 @@
+<p align="center">
+  <img src="image1.png" alt="AltaXploit Banner" width="800"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AltaXploit"><img src="https://img.shields.io/badge/GitHub-AltaXploit-red?style=for-the-badge&logo=github"></a>
+  <a href="https://www.alwaz.co.uk"><img src="https://img.shields.io/badge/Website-alwaz.co.uk-blue?style=for-the-badge&logo=google-chrome"></a>
+  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Platform-Linux%20%7C%20Kali-lightgrey?style=for-the-badge"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Python-3.8%2B-yellow?style=for-the-badge&logo=python"></a>
+</p>
+
+---
 
 # ⚡ AltaXploit C2 Framework ⚡
 
-### *Advanced Red Team Command & Control Infrastructure*
-
-![Alta-Tracker Screenshot](image1.png)
-
-<p align="center">
-  <a href="https://github.com/AltaXploit"><img src="https://img.shields.io/badge/GitHub-AltaXploit-red?style=flat-square&logo=github"></a>
-  <a href="https://www.alwaz.co.uk"><img src="https://img.shields.io/badge/Website-alwaz.co.uk-blue?style=flat-square&logo=google-chrome"></a>
-  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Platform-Linux%20%7C%20Kali-lightgrey?style=flat-square"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Python-3.8%2B-yellow?style=flat-square&logo=python"></a>
-</p>
+## *Advanced Red Team Command & Control Infrastructure*
 
 ---
 
@@ -21,6 +24,7 @@
 - [💻 Command Reference & Screenshot](#-command-reference--screenshot)
 - [🚀 Installation & Setup Guide](#-installation--setup-guide)
 - [🔐 Advanced Persistence & Payload Deployment](#-advanced-persistence--payload-deployment)
+- [🎥 Surveillance Modules – Live Demo](#-surveillance-modules--live-demo)
 - [🔌 Port Architecture & Network Layout](#-port-architecture--network-layout)
 - [⚙️ Advanced Configuration](#️-advanced-configuration)
 - [🎁 Gift to the Community – Hide Scheduled Tasks](#-gift-to-the-community--hide-scheduled-tasks)
@@ -33,6 +37,10 @@
 **AltaXploit C2** is a next‑generation Red Team Command and Control framework engineered for stealth, resilience, and operational flexibility. Built around advanced PowerShell reverse shells, it operates **completely in‑memory** – never touching disk – to effortlessly bypass modern AV/EDR solutions. With integrated surveillance modules, a built‑in payload generator, and secure TLS communications, it provides everything a red team needs for covert engagements.
 
 > 🛡️ *"With great power comes great responsibility!"* – AltaXploit Motto
+
+<p align="center">
+  <img src="https://media.giphy.com/media/l0Exd8EdUDNQK9j9W/giphy.gif" width="500">
+</p>
 
 ---
 
@@ -217,6 +225,24 @@ Get-ScheduledTask -TaskName "WindowsUpdateService" | Select-Object TaskName, Sta
 
 ---
 
+## 🎥 Surveillance Modules – Live Demo
+
+AltaXploit includes a full‑blown surveillance suite that captures and streams live video/audio from compromised machines. Once you install `ffmpeg` on the target using `install spyware`, you can activate any of these modules.
+
+| Module | Description | Screenshot |
+|--------|-------------|------------|
+| **Camera** | Streams real‑time webcam feed. | ![Camera](cam.png) |
+| **Screen** | Captures live desktop screen. | ![Screen](screen.png) |
+| **Microphone** | Records live audio from the mic. | ![Mic](mic.png) |
+
+> 🔴 All streams are sent via RTMP to your local Node Media Server (port 1935) and can be viewed using the built‑in GUI viewers (`cam.py`, `screen.py`, `microphone.py`). Alternatively, you can use any RTMP‑compatible player like VLC at `rtmp://<LHOST>/live/stream`, `rtmp://<LHOST>/live/screen`, or `rtmp://<LHOST>/live/mic`.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/26Ff1JjEirjWYB4Jm/giphy.gif" width="600">
+</p>
+
+---
+
 ## 🔌 Port Architecture & Network Layout
 
 | Port | Protocol | Service | Purpose |
@@ -225,7 +251,7 @@ Get-ScheduledTask -TaskName "WindowsUpdateService" | Select-Object TaskName, Sta
 | **1935** | RTMP | Node Media Server | Streaming video/audio for spy modules |
 
 - The C2 server is **hardcoded** to listen on **port 443** – this mimics standard secure web traffic, making it harder to detect by network filters.
-- The Node Media Server runs locally on **port 1935** and is automatically started when a `spy` command is issued. It pushes RTMP streams to the attacker's machine for viewing via the included GUI viewers (`cam.py`, `screen.py`, `microphone.py`).
+- The Node Media Server runs locally on **port 1935** and is automatically started when a `spy` command is issued. It pushes RTMP streams to the attacker's machine for viewing via the included GUI viewers.
 
 > 🔥 **Pro Tip:** If you're behind a NAT, ensure port forwarding is configured for both ports.
 
