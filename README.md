@@ -1,14 +1,9 @@
 <p align="center">
- 
-
-   # ⚡ AltaXploit C2 Framework ⚡
-
-# *Advanced Red Team Command & Control Infrastructure*
-
-
-
-  <img src="image1.png" alt="AltaXploit Banner" width="800"/>
+  <img src="image1.png" alt="AltaXploit Banner" width="850"/>
 </p>
+
+<h1 align="center">⚡ AltaXploit C2 Framework ⚡</h1>
+<h3 align="center"><em>Advanced Red Team Command & Control Infrastructure</em></h3>
 
 <p align="center">
   <a href="https://github.com/AltaXploit"><img src="https://img.shields.io/badge/GitHub-AltaXploit-red?style=for-the-badge&logo=github"></a>
@@ -18,6 +13,7 @@
   <a href="#"><img src="https://img.shields.io/badge/Python-3.8%2B-yellow?style=for-the-badge&logo=python"></a>
 </p>
 
+---
 
 ## 🧭 Table of Contents
 - [🌟 Overview](#-overview)
@@ -64,7 +60,7 @@
 
 ## 💻 Command Reference
 
-### Main Prompt Commands (at `AltaXploit>`)
+### 🖥️ Main Prompt Commands (at `AltaXploit>`)
 
 | Command | Description |
 |---------|-------------|
@@ -76,13 +72,13 @@
 | `clear` | Clear the terminal |
 | `exit` | Shut down the C2 server |
 
-### Interactive Shell Commands (within `AltaXploit[<id>]>`)
+### 🖥️ Interactive Shell Commands (within `AltaXploit[<id>]>`)
 
 | Command | Description |
 |---------|-------------|
 | `back` | Return to main prompt |
-| `upload <local_file> <remote_file>` | Upload a **local** file to the client. Both paths must be **absolute** with filenames (e.g., `/home/kali/tool.exe` → `C:\Users\admin\Desktop\tool.exe`). |
-| `download <remote_file>` | Download a file from the client. Use the **full remote path** with filename (e.g., `C:\Windows\Temp\data.txt`). The file will be saved in the `Client-Data/` folder on the C2 server. |
+| `upload <local_file> <remote_file>` | Upload a **local** file to the client. Both paths must be **absolute** with filenames (e.g., `upload /home/kali/tool.exe C:\Users\admin\Desktop\tool.exe`). |
+| `download <remote_file>` | Download a file from the client. Provide the **full remote path** with filename (e.g., `download C:\Windows\Temp\data.txt`). The file is saved in `Client-Data/` on the C2 server. |
 | `install spyware` | Install FFmpeg on the target (required for spy modules) |
 | `spy camera` | Start live webcam stream |
 | `spy screen` | Start live screen capture |
@@ -91,10 +87,10 @@
 | `<any PowerShell command>` | Execute arbitrary commands on the target |
 
 > 📁 **File Transfer Notes:**  
-> - Always provide **full absolute paths** with the **filename and extension**.  
-> - Maximum file size: **1 GB** (tested; larger transfers may timeout).  
-> - Upload progress is shown on the server console.  
-> - Downloaded files are stored in `Client-Data/` with the original filename.
+> - **Always use full absolute paths** – both for the source (local) and destination (remote). The filename and extension are mandatory.  
+> - **Size limit:** Works reliably for files **up to 1 GB**; larger files may timeout.  
+> - **Upload example:** `upload /home/kali/payload.exe C:\Users\Public\payload.exe`  
+> - **Download example:** `download C:\Users\admin\Documents\secret.docx` (saved as `secret.docx` in `Client-Data/`).
 
 > 🖼️ *For a visual guide, see the command menu screenshot below.*  
 > ![Command Menu Screenshot](image2.png)
