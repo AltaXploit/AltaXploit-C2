@@ -1,4 +1,4 @@
-```markdown
+
 # ⚡ AltaXploit C2 Framework ⚡
 
 ### *Advanced Red Team Command & Control Infrastructure*
@@ -166,4 +166,4 @@ If you're running headless (no `DISPLAY`), you can comment out the GUI launch li
 <p align="center">
   <b>Made with ❤️ for the Red Team Community</b>
 </p>
-```
+
