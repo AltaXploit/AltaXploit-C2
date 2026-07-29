@@ -1,87 +1,169 @@
+```markdown
 # ⚡ AltaXploit C2 Framework ⚡
 
-## *Advanced Red Team Command & Control Infrastructure*
+### *Advanced Red Team Command & Control Infrastructure*
 
 ![Alta-Tracker Screenshot](image1.png)
 
-[](https://www.google.com/search?q=%5Bhttps%3A%2F%2Fgithub.com%2FAltaXploit%5D%28https%3A%2F%2Fgithub.com%2FAltaXploit%29)
-[](https://www.alwaz.co.uk)
-[](https://www.google.com/search?q=)
-[](https://www.google.com/search?q=LICENSE)
+<p align="center">
+  <a href="https://github.com/AltaXploit"><img src="https://img.shields.io/badge/GitHub-AltaXploit-red?style=flat-square&logo=github"></a>
+  <a href="https://www.alwaz.co.uk"><img src="https://img.shields.io/badge/Website-alwaz.co.uk-blue?style=flat-square&logo=google-chrome"></a>
+  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Platform-Linux%20%7C%20Kali-lightgrey?style=flat-square"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Python-3.8%2B-yellow?style=flat-square&logo=python"></a>
+</p>
 
 ---
 
 ## 🧭 Table of Contents
-
-* [🌟 Overview](https://www.google.com/search?q=%23-overview)
-* [🔥 Key Features](https://www.google.com/search?q=%23-key-features)
-* [💻 Command Reference Preview](https://www.google.com/search?q=%23-command-reference-preview)
-* [🚀 Installation & Setup Guide](https://www.google.com/search?q=%23-installation--setup-guide)
-* [🔌 Port Architecture & Network Layout](https://www.google.com/search?q=%23-port-architecture--network-layout)
-* [⚠️ Legal Disclaimer & Disclaimer of Liability](https://www.google.com/search?q=%23%EF%B8%8F-legal-disclaimer--disclaimer-of-liability)
+- [🌟 Overview](#-overview)
+- [🔥 Key Features](#-key-features)
+- [💻 Command Reference & Screenshot](#-command-reference--screenshot)
+- [🚀 Installation & Setup Guide](#-installation--setup-guide)
+- [🔌 Port Architecture & Network Layout](#-port-architecture--network-layout)
+- [⚙️ Advanced Configuration](#️-advanced-configuration)
+- [⚠️ Legal Disclaimer & Disclaimer of Liability](#️-legal-disclaimer--disclaimer-of-liability)
 
 ---
 
 ## 🌟 Overview
 
-**AltaXploit C2** is an advanced Red Team Command and Control framework designed for stealth operations, robust client management, and extensive post-exploitation capabilities[cite: 1]. Built primarily around advanced PowerShell reverse shells, it operates heavily in-memory, ensuring complete fileless execution on the victim's machine to easily bypass modern Anti-Virus (AV) and Endpoint Detection and Response (EDR) solutions[cite: 1].
+**AltaXploit C2** is a next‑generation Red Team Command and Control framework engineered for stealth, resilience, and operational flexibility. Built around advanced PowerShell reverse shells, it operates **completely in‑memory** – never touching disk – to effortlessly bypass modern AV/EDR solutions. With integrated surveillance modules, a built‑in payload generator, and secure TLS communications, it provides everything a red team needs for covert engagements.
+
+> 🛡️ *"With great power comes great responsibility!"* – AltaXploit Motto
 
 ---
 
 ## 🔥 Key Features
 
-* 🧬 **Stealthy In-Memory Execution:** Payloads are executed directly in memory without writing payloads to disk, minimizing forensic footprint and avoiding traditional file-based detection mechanisms[cite: 1].
-* 🔒 **Encrypted TLS Communications:** Designed strictly around secure **port 443** using SSL with fake certificates to blend seamlessly with normal HTTPS web traffic[cite: 1].
-* 🎥 **Advanced Surveillance & Spyware Suite:** Integrates natively with `ffmpeg` and a local Node Media Server running on **port 1935** to capture real-time webcam streams, desktop screen monitoring, and microphone audio recordings[cite: 1].
-* 🧠 **Resilient Client Persistence & Tracking:** Tracks and manages multiple active targets with automated HWID identification and unique session handling[cite: 1].
-* 🛠️ **Built-in Automated Payload Generator:** Generates stealthy Windows EXE binaries compiled via .NET that utilize native Windows APIs without console flashing[cite: 1].
+| Feature | Description |
+|---------|-------------|
+| 🧬 **In‑Memory Execution** | Payloads run purely in memory; no files written to disk, leaving minimal forensic footprint. |
+| 🔒 **TLS Encrypted C2** | All traffic over **port 443** with self‑signed certificates, blending with normal HTTPS traffic. |
+| 🎥 **Live Surveillance Suite** | Real‑time webcam, screen, and microphone streaming using **ffmpeg** and a local **Node Media Server** (port 1935). |
+| 🧠 **Persistent Client Tracking** | Unique HWID‑based identification; automatically re‑attaches to reconnecting clients. |
+| 🛠️ **One‑Click Payload Generator** | Produces stealthy Windows EXE (via .NET) with no console flash – ready for deployment. |
+| 📂 **File Transfer** | Upload/download files to/from compromised hosts with progress feedback. |
+| 💻 **Interactive PowerShell Shells** | Full interactive sessions with command history and color‑coded output. |
 
 ---
 
-## 💻 Command Reference Preview
+## 💻 Command Reference & Screenshot
 
-The framework features an intuitive, color-coded interactive command interface designed for speed and clarity during operations:
+![Command Menu Screenshot](image2.png)
+
+### Interactive Shell Commands (within `attack <id>`)
+
+| Command | Description |
+|---------|-------------|
+| `list` | Show all connected clients |
+| `attack <id>` | Enter interactive shell with a client |
+| `back` | Return to main prompt |
+| `kill <id>` | Permanently terminate a client session |
+| `upload <src> <dst>` | Upload a local file to the client |
+| `download <file>` | Download a file from the client |
+| `install spyware` | Install FFmpeg on the target (required for spy modules) |
+| `spy camera` | Start live webcam stream |
+| `spy screen` | Start live screen capture |
+| `spy mic` | Start live microphone stream |
+| `spy stop` | Stop all active streams |
+| `generate payload` | Build a new Windows EXE payload |
+| `help` | Display this command reference |
+| `clear` | Clear the terminal |
+| `exit` | Shut down the C2 server |
 
 ---
 
 ## 🚀 Installation & Setup Guide
 
-> **💡 Recommended Environment:** Tested and optimized for **Kali Linux** and other **Debian-based distributions**. Ensure you run the dependency setup script prior to launching the main framework.
+> **💡 Recommended Environment:** Kali Linux (or any Debian‑based) with root access. The setup script installs all dependencies automatically.
 
-Execute the following commands sequentially in your terminal:
-
+### Step 1 – Clone the Repository
 ```bash
-# 1. Clone the repository
 git clone https://github.com/AltaXploit/AltaXploit-C2.git
-
-# 2. Navigate into the framework directory
 cd AltaXploit-C2
-
-# 3. Give execution permissions to the dependency and environment setup script
-chmod +x setup.py
-
-# 4. Run the setup script first with administrative privileges (Crucial for dependencies)
-sudo python3 setup.py
-
-# 5. Finally, launch the C2 framework control center
-python3 C2.py
-
 ```
+
+### Step 2 – Make Setup Executable
+```bash
+chmod +x setup.py
+```
+
+### Step 3 – Run the Dependency Installer
+```bash
+sudo python3 setup.py
+```
+
+**What this does:**
+- 🐧 Installs system packages: `ffmpeg`, `mpv`, `vlc`, `nodejs`, `npm`, `openssl`, `python3-pip`, `python3-tk`, `wget`, and more.
+- 🧩 Installs Python modules: `python-vlc`, `pycryptodome` (with `--break-system-packages` for Kali).
+- 📦 Installs Node.js module `node-media-server` locally in the `script/` folder.
+- 🔐 Generates self‑signed SSL certificates in `certs/`.
+- 📁 Creates required directories (`Client-Data`, `script`, `certs`, `build`).
+- 🧪 Verifies all executables and imports.
+
+> ⏱️ The entire setup takes **3–5 minutes** depending on your connection speed.
+
+### Step 4 – Launch the C2 Server
+```bash
+python3 C2.py
+```
+
+You will be prompted to enter your **LHOST IP** (the public IP where the server is reachable) – this is used for RTMP stream URLs. After that, you'll see the animated banner and the `AltaXploit>` prompt.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif" width="400">
+</p>
 
 ---
 
 ## 🔌 Port Architecture & Network Layout
 
-Proper network configuration is critical for maintaining stable communication channels:
+| Port | Protocol | Service | Purpose |
+|------|----------|---------|---------|
+| **443** | HTTPS/TLS | C2 Server | Main command & control channel (mandatory) |
+| **1935** | RTMP | Node Media Server | Streaming video/audio for spy modules |
 
-* **Port 443 (Default & Mandatory):** The C2 server is hardcoded/designed to operate exclusively on **port 443** utilizing SSL with fake certificates, mimicking standard secure web traffic to evade basic network filters[cite: 1].
-* **Port 1935 (Node Media Server Stream):** Automatically runs locally to manage real-time streaming data (`rtmp`) needed for the framework's integrated camera, microphone, and screen spy features[cite: 1].
+- The C2 server is **hardcoded** to listen on **port 443** – this mimics standard secure web traffic, making it harder to detect by network filters.
+- The Node Media Server runs locally on **port 1935** and is automatically started when a `spy` command is issued. It pushes RTMP streams to the attacker's machine for viewing via the included GUI viewers (`cam.py`, `screen.py`, `microphone.py`).
+
+> 🔥 **Pro Tip:** If you're behind a NAT, ensure port forwarding is configured for both ports.
+
+---
+
+## ⚙️ Advanced Configuration
+
+### Customizing LHOST
+The C2 server will ask for the LHOST IP at startup. You can also set it manually by editing the `LHOST` variable in `C2.py` (line ~40).
+
+### Modifying SSL Certificates
+Replace the self‑signed `cert.pem` and `key.pem` in `certs/` with your own signed certificates for added stealth.
+
+### Disabling GUI Viewers
+If you're running headless (no `DISPLAY`), you can comment out the GUI launch lines in `C2.py` (inside the `spy` command handlers) and use an external RTMP player like VLC to view streams at `rtmp://<LHOST>/live/stream`.
 
 ---
 
 ## ⚠️ Legal Disclaimer & Disclaimer of Liability
 
-> **IMPORTANT:** *The software and source code provided in this repository are intended solely for authorized security research, educational purposes, penetration testing, and red teaming engagements with explicit prior written consent from system owners.*
+> **IMPORTANT:** *This software is provided solely for educational purposes, authorized penetration testing, and red teaming engagements with explicit written permission from the system owner. Unauthorized access to computer systems is illegal and punishable by law.*
 
-* **Author Responsibility:** The creator (**Muhammad Alwaz**) assumes **no liability** whatsoever for any misuse, damage, or illegal activities conducted using this framework[cite: 1].
-* **User Accountability:** By cloning, downloading, or utilizing this tool, you agree that you are solely responsible for compliance with all applicable local, national, and international laws. Unauthorized access or attacks against computer networks are strictly prohibited.
+- **Author's Liability:** The developer (**Muhammad Alwaz**) assumes **no responsibility** whatsoever for any misuse, damage, or illegal activities conducted with this framework.
+- **User Accountability:** By downloading, installing, or using this tool, you agree that you are solely responsible for compliance with all applicable local, national, and international laws. You may not use this tool for any malicious or unlawful purpose.
+
+> 🛡️ *Use responsibly – hack the planet, but only with consent!*
+
+---
+
+## 📬 Contact & Support
+
+- **Developer:** Muhammad Alwaz
+- **GitHub:** [AltaXploit](https://github.com/AltaXploit)
+- **Website:** [alwaz.co.uk](https://www.alwaz.co.uk)
+
+---
+
+<p align="center">
+  <b>Made with ❤️ for the Red Team Community</b>
+</p>
+```
